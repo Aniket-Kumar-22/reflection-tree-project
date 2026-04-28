@@ -1,0 +1,197 @@
+{
+  "START": {
+    "type": "start",
+    "text": "Good evening. Let's take 3 minutes to reflect on your day.",
+    "next": "OPEN_Q1"
+  },
+
+  "OPEN_Q1": {
+    "type": "question",
+    "text": "How would you describe today?",
+    "options": {
+      "1": { "text": "Productive", "next": "A1_Q1" },
+      "2": { "text": "Tough", "next": "A1_Q1" },
+      "3": { "text": "Mixed", "next": "A1_Q1" },
+      "4": { "text": "Frustrating", "next": "A1_Q1" }
+    }
+  },
+
+  "A1_Q1": {
+    "type": "question",
+    "text": "When something did not go as planned today, what was your first reaction?",
+    "options": {
+      "1": { "text": "I thought about what I could control", "next": "A1_Q2", "signal": "axis1:internal" },
+      "2": { "text": "I felt stuck because of others", "next": "A1_Q2", "signal": "axis1:external" },
+      "3": { "text": "I tried another way", "next": "A1_Q2", "signal": "axis1:internal" },
+      "4": { "text": "I waited for someone else to fix it", "next": "A1_Q2", "signal": "axis1:external" }
+    }
+  },
+
+  "A1_Q2": {
+    "type": "question",
+    "text": "When something went well today, what helped most?",
+    "options": {
+      "1": { "text": "My preparation", "next": "A1_Q3", "signal": "axis1:internal" },
+      "2": { "text": "My quick adjustment", "next": "A1_Q3", "signal": "axis1:internal" },
+      "3": { "text": "Luck", "next": "A1_Q3", "signal": "axis1:external" },
+      "4": { "text": "Other people handled it", "next": "A1_Q3", "signal": "axis1:external" }
+    }
+  },
+  
+  "A1_Q3": {
+    "type": "question",
+    "text": "If the same problem happens tomorrow, what would you do differently?",
+    "options": {
+        "1": { "text": "Plan earlier", "next": "A1_DECISION", "signal": "axis1:internal" },
+        "2": { "text": "Ask for help sooner", "next": "A1_DECISION", "signal": "axis1:internal" },
+        "3": { "text": "Hope others handle it better", "next": "A1_DECISION", "signal": "axis1:external" },
+        "4": { "text": "Wait and see what happens", "next": "A1_DECISION", "signal": "axis1:external" }
+    }
+  },
+
+  "A1_DECISION": {
+    "type": "decision",
+    "condition": "axis1",
+    "internal": "A1_REF_INTERNAL",
+    "external": "A1_REF_EXTERNAL"
+  },
+
+  "A1_REF_INTERNAL": {
+    "type": "reflection",
+    "text": "You noticed your role in the day. That is agency. You may not control everything, but you can control your response.",
+    "next": "BRIDGE_1_2"
+  },
+
+  "A1_REF_EXTERNAL": {
+    "type": "reflection",
+    "text": "Today may have felt controlled by outside things. That is okay to notice. Tomorrow, try finding one small choice that is still in your hands.",
+    "next": "BRIDGE_1_2"
+  },
+
+  "BRIDGE_1_2": {
+    "type": "bridge",
+    "text": "Now let's move from how you handled the day to what you contributed.",
+    "next": "A2_Q1"
+  },
+
+  "A2_Q1": {
+    "type": "question",
+    "text": "Which moment describes your work with others today?",
+    "options": {
+      "1": { "text": "I helped someone without being asked", "next": "A2_Q2", "signal": "axis2:contribution" },
+      "2": { "text": "I taught or guided someone", "next": "A2_Q2", "signal": "axis2:contribution" },
+      "3": { "text": "I felt I deserved more credit", "next": "A2_Q2", "signal": "axis2:entitlement" },
+      "4": { "text": "I felt others were not doing enough", "next": "A2_Q2", "signal": "axis2:entitlement" }
+    }
+  },
+
+  "A2_Q2": {
+    "type": "question",
+    "text": "When you think about your effort today, what feels most true?",
+    "options": {
+      "1": { "text": "I gave my best even when no one noticed", "next": "A2_Q3", "signal": "axis2:contribution" },
+      "2": { "text": "I supported the team goal", "next": "A2_Q3", "signal": "axis2:contribution" },
+      "3": { "text": "I wanted more appreciation", "next": "A2_Q3", "signal": "axis2:entitlement" },
+      "4": { "text": "I expected others to make things easier", "next": "A2_Q3", "signal": "axis2:entitlement" }
+    }
+  },
+
+  "A2_Q3": {
+  "type": "question",
+  "text": "What extra value did you add today?",
+  "options": {
+    "1": { "text": "I solved a small problem", "next": "A2_DECISION", "signal": "axis2:contribution" },
+    "2": { "text": "I made someone's work easier", "next": "A2_DECISION", "signal": "axis2:contribution" },
+    "3": { "text": "I mostly waited for others to support me", "next": "A2_DECISION", "signal": "axis2:entitlement" },
+    "4": { "text": "I felt my effort should be noticed more", "next": "A2_DECISION", "signal": "axis2:entitlement" }
+  }
+},
+
+  "A2_DECISION": {
+    "type": "decision",
+    "condition": "axis2",
+    "contribution": "A2_REF_CONTRIBUTION",
+    "entitlement": "A2_REF_ENTITLEMENT"
+  },
+
+  "A2_REF_CONTRIBUTION": {
+    "type": "reflection",
+    "text": "You showed a contribution mindset today. Small helpful actions often create trust, even when they are not immediately noticed.",
+    "next": "BRIDGE_2_3"
+  },
+
+  "A2_REF_ENTITLEMENT": {
+    "type": "reflection",
+    "text": "You noticed a wish for recognition or support. That is human. Tomorrow, try asking: what can I give before I expect something back?",
+    "next": "BRIDGE_2_3"
+  },
+
+  "BRIDGE_2_3": {
+    "type": "bridge",
+    "text": "Now let's widen the view from yourself to the people affected by your work.",
+    "next": "A3_Q1"
+  },
+
+  "A3_Q1": {
+    "type": "question",
+    "text": "When you think about today's biggest challenge, who comes to mind?",
+    "options": {
+      "1": { "text": "Only me", "next": "A3_Q2", "signal": "axis3:self" },
+      "2": { "text": "My team", "next": "A3_Q2", "signal": "axis3:others" },
+      "3": { "text": "A colleague who needed support", "next": "A3_Q2", "signal": "axis3:others" },
+      "4": { "text": "The customer or end user", "next": "A3_Q2", "signal": "axis3:others" }
+    }
+  },
+
+  "A3_Q2": {
+    "type": "question",
+    "text": "While solving problems today, what did you mostly think about?",
+    "options": {
+      "1": { "text": "My stress and my workload", "next": "A3_Q3", "signal": "axis3:self" },
+      "2": { "text": "How my work affected the team", "next": "A3_Q3", "signal": "axis3:others" },
+      "3": { "text": "How to reduce problems for others", "next": "A3_Q3", "signal": "axis3:others" },
+      "4": { "text": "Just finishing my own task", "next": "A3_Q3", "signal": "axis3:self" }
+    }
+  },
+
+  "A3_Q3": {
+  "type": "question",
+  "text": "Whose day became better because of your actions?",
+  "options": {
+    "1": { "text": "Mostly mine", "next": "A3_DECISION", "signal": "axis3:self" },
+    "2": { "text": "A teammate", "next": "A3_DECISION", "signal": "axis3:others" },
+    "3": { "text": "A customer or user", "next": "A3_DECISION", "signal": "axis3:others" },
+    "4": { "text": "I am not sure", "next": "A3_DECISION", "signal": "axis3:self" }
+   }
+ },
+ 
+  "A3_DECISION": {
+    "type": "decision",
+    "condition": "axis3",
+    "others": "A3_REF_OTHERS",
+    "self": "A3_REF_SELF"
+  },
+
+  "A3_REF_OTHERS": {
+    "type": "reflection",
+    "text": "You looked beyond yourself today. That wider view can make work feel more meaningful and connected.",
+    "next": "SUMMARY"
+  },
+
+  "A3_REF_SELF": {
+    "type": "reflection",
+    "text": "Today your attention stayed mostly on your own pressure. That is understandable. Tomorrow, try noticing one other person affected by the same situation.",
+    "next": "SUMMARY"
+  },
+
+  "SUMMARY": {
+    "type": "summary",
+    "text": "Today's reflection covered three things: your sense of control, your contribution, and your concern for others. A better day begins with one small conscious choice.",
+    "next": "END"
+  },
+
+  "END": {
+    "type": "end",
+    "text": "Reflection complete. See you tomorrow."
+  }
+}
